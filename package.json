@@ -3,16 +3,28 @@
   "version": "0.1.0",
   "description": "A command line tool for creating snapshots of p5 sketches",
   "main": "./src/main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachkrall/p5snap.git"
   },
-  "copyright": "2020",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cli",
+    "art",
+    "generative",
+    "p5.js"
+  ],
+  "author": "Zach Krall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zachkrall/p5snap/issues"
+  },
+  "homepage": "https://github.com/zachkrall/p5snap#readme",
   "dependencies": {
     "canvas": "^2.6.1",
     "jsdom": "^16.2.2",
     "p5": "^1.0.0"
-  }
+  },
+  files: [
+    'src/**/*'
+  ]
 }
