@@ -1,13 +1,21 @@
 (p) => {
-  let x = 10;
   p.setup = () => {
-    let canvas = p.createCanvas(400,400)
-    p.background(0)
+    p.createCanvas(400, 400);
   }
-  p.draw = () => {
-    p.background(0)
-    p.fill(255,0,0)
-    p.rect(x,10,100,100)
-    x += 30;
+
+  p.draw = () =>{
+    p.background('#ED225D');
+    p.noStroke();
+    p.fill('#FFFFFF');
+
+    for(let i = 20;i<p.width;i+=40){
+      for(let j = 20;j<p.height;j+=40){
+        let size = Math.sin(i + p.frameCount * 0.01)
+        size += Math.cos(j + p.frameCount * 0.1)
+        size *= 20;
+
+        p.ellipse(i,j,size,size);
+      }
+    }
   }
 }

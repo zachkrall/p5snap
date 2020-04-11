@@ -1,5 +1,8 @@
 <img src="./p5snap.png" height="70px"/></div>
 
+<a href="https://github.com/zachkrall/p5snap/issues/"><img src="https://img.shields.io/github/issues/zachkrall/p5snap.svg" height="20px"/></a> <a href="https://github.com/zachkrall/p5snap/commits"><img src="https://img.shields.io/github/last-commit/zachkrall/p5snap.svg" height="20px"/></a><br/>
+<a href="http://newschool.edu"><img src="https://img.shields.io/badge/made%20at-The%20New%20School-E82E21.svg" height="20px"/></a>
+
 ## about
 
 **p5snap** is a command-line interface that creates and saves snapshots of a p5 sketch
@@ -21,19 +24,25 @@ p5snap <FILE-PATH> -n <NUMBER-OF-IMAGES>
 
 for example:
 ```shell
-p5snap ./mySketch.js -n 5
+p5snap ./mySketch.js -n 20
 ```
 
 will create:<br/>
 • mySketch_0.png<br/>
 • mySketch_1.png<br/>
 • mySketch_2.png<br/>
-• mySketch_3.png<br/>
-• mySketch_4.png
+• ...<br/>
+• mySketch_19.png
+
+![Example](example.png)
 
 ### instance mode
 
 if your sketch is written as a p5 instance, you can use the `--instance` flag to execute <span style="color:#ED225D">**p5snap**</span> in instance mode
+
+instance mode does not require `new p5()`
+
+[view example code for instance mode sketches](./examples/instance.js)
 
 ## limitations
 
