@@ -1,6 +1,9 @@
-const fs = require('fs')
-const path = require('path')
-const chalk = require('chalk')
+const fs       = require('fs')
+const path     = require('path')
+const chalk    = require('chalk')
+
+const gridMsg  = require('./gridMsg.js')
+
 
 module.exports = ({ canvas, filename, dir } = {}) => {
   let string = canvas.toDataURL()
@@ -17,5 +20,5 @@ module.exports = ({ canvas, filename, dir } = {}) => {
 
   fs.writeFileSync(file_path, buffer);
 
-  console.log(`${chalk.bold('Saved:')}     ${file_name}`);
+  gridMsg(`${chalk.bold('Saved')}`,`${file_name}`);
 }

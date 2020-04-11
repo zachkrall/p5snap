@@ -25,7 +25,7 @@ const dom       = new JSDOM(`...`, { runScripts: "outside-only" })
 /*
   CLI
 */
-const argv = require('yargs')
+const yargs = require('yargs')
   .usage(`📷 ${chalk.bold(chalk.blue(package.name))}
 ${package.description}
 
@@ -45,7 +45,8 @@ Usage: $0 <command> [options]`)
   .help('h')
   .alias('h', 'help')
   .epilog('☺️ ✨')
-  .argv;
+
+const argv = yargs.argv
 
 /*
   Create the virtual window environment
@@ -66,16 +67,45 @@ const p5 = require('p5')
 */
 const save = require('./save')
 
+/* Define Error Printing */
+const errorMsg = str => console.log(`${chalk.red(chalk.bold(str))}`)
+const gridMsg  = require('./gridMsg.js')
+
 /*
-  Parameters
+  Input Path Validation
 */
 const input_path      = argv._[0]
+
+if(!input_path) {
+  yargs.showHelp()
+  console.log(``)
+  errorMsg('No File Provided')
+  process.exit(0)
+}
+
 const current_dir     = process.cwd()
 const sketch_file     = path.resolve(current_dir, input_path)
+
+/*
+  File Validation
+*/
+if(!fs.existsSync(sketch_file)){
+  yargs.showHelp()
+  console.log(``)
+  errorMsg(`File Does Not Exist:
+${sketch_file}`)
+  process.exit(0)
+}
+
 const sketch_contents = fs.readFileSync(sketch_file, {encoding: 'UTF-8'})
 const filename        = input_path.match(/[A-z]*.js$/g)[0].replace(/.js/,'')
 
-const mode = argv.i ? 'instance' : 'global'
+/*
+  p5 Mode Selection
+  Default: Global
+*/
+const mode = !argv.i ? 'global' : 'instance'
+
 /*
   Interval Counter
 */
@@ -83,14 +113,14 @@ let int = 0
 
 console.log(`📷 ${chalk.blue(chalk.bold(package.name))}`)
 console.log(``)
-console.log(`Filename:  ${chalk.underline(filename)}`)
+gridMsg(`Filename`, `${chalk.underline(filename)}`)
 
 if(mode == 'global'){
   /*
     GLOBAL MODE
   */
-  console.log('p5 Mode:   Default (Global)')
-  console.log(` `)
+  gridMsg('p5 Mode','Default (Global)')
+  console.log('')
 
   // ... set timeout used for waiting for virtual dom to "load"
   // TODO: use window.onload event?
@@ -123,8 +153,8 @@ if(mode == 'global'){
     INSTANCE MODE
   */
   let sketch
-  console.log('p5 Mode:   Instance')
-  console.log(` `)
+  gridMsg('p5 Mode','Instance')
+  console.log('')
 
   // there must be a better way to 'wait'
   // for the fake dom to update after loading p5...

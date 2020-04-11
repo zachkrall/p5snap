@@ -21,8 +21,10 @@
   "homepage": "https://github.com/zachkrall/p5snap#readme",
   "dependencies": {
     "canvas": "^2.6.1",
+    "chalk": "^4.0.0",
     "jsdom": "^16.2.2",
-    "p5": "^1.0.0"
+    "p5": "^1.0.0",
+    "yargs": "^15.3.1"
   },
   "files": [
     "src/**/*"
