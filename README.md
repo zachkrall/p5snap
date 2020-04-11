@@ -1,12 +1,12 @@
 <img src="./p5snap.png" height="70px"/></div>
 
 <a href="https://github.com/zachkrall/p5snap/issues/"><img src="https://img.shields.io/github/issues/zachkrall/p5snap.svg" height="20px"/></a>
-<a href="https://github.com/zachkrall/p5snap/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22"><img src="https://img.shields.io/github/labels/zachkrall/p5snap/help-wanted"/></a>
+<a href="https://github.com/zachkrall/p5snap/pulls"><img src="https://img.shields.io/github/issues-pr/zachkrall/p5snap"/></a>
+<a href="https://github.com/zachkrall/p5snap/issues?q=is%3Aissue+is%3Aopen+label%3A%22help%20wanted"><img src="https://img.shields.io/github/labels/zachkrall/p5snap/help%20wanted"/></a>
 <a href="https://github.com/zachkrall/p5snap/commits"><img src="https://img.shields.io/github/last-commit/zachkrall/p5snap.svg" height="20px"/></a>
 <br/>
 <a href="https://npmjs.com/package/p5snap/"><img src="https://img.shields.io/npm/dy/p5snap"/></a>
 <a href="https://github.com/zachkrall/p5snap/graphs/contributors"><img src="https://img.shields.io/github/contributors/zachkrall/p5snap"></a>
-<br/>
 <a href="http://newschool.edu"><img src="https://img.shields.io/badge/made%20at-The%20New%20School-E82E21.svg" height="20px"/></a>
 
 ## about
