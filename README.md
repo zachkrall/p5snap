@@ -2,7 +2,7 @@
 
 ## about
 
-<span style="color:#ED225D">**p5snap**</span> is a command-line interface that creates and saves snapshots of a p5 sketch
+**p5snap** is a command-line interface that creates and saves snapshots of a p5 sketch
 
 ## installation
 
@@ -38,7 +38,7 @@ if your sketch is written as a p5 instance, you can use the `--instance` flag to
 
 ## limitations
 
-<span style="color:#ED225D">**p5snap**</span> currently only saves a single `<canvas/>` context. If your p5 drawing uses or draws DOM elements, it will not be included in the image.
+**p5snap** currently only saves a single `<canvas/>` context. If your p5 drawing uses or draws DOM elements, it will not be included in the image.
 
 ## contributing
 Contributions, issues and feature requests are welcome.<br/>Feel free to check [issues](https://github.com/zachkrall/p5snap/issues/) page if you want to contribute.
