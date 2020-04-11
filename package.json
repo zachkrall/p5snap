@@ -2,7 +2,7 @@
   "name": "p5snap",
   "version": "0.1.0",
   "description": "A command line tool for creating snapshots of p5 sketches",
-  "main": "./src/main.js",
+  "bin": "./src/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zachkrall/p5snap.git"

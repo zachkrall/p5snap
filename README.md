@@ -29,8 +29,7 @@ will create:<br/>
 • mySketch_1.png<br/>
 • mySketch_2.png<br/>
 • mySketch_3.png<br/>
-• mySketch_4.png<br/>
-• mySketch_0.png
+• mySketch_4.png
 
 ### instance mode
 
