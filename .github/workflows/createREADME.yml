@@ -12,16 +12,16 @@ jobs:
         node-version: [12.x]
     steps:
     - uses: actions/checkout@master
-    - name: Create local changes
+    - name: Generate README.md File
       run: |
         npm run dev:readme
         cat README.md
-    - name: Commit files
+    - name: Commit Changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add README.md
-        git commit -m "Add changes"
+        git commit -m "generated readme with github actions - $(date)"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:

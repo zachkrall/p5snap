@@ -99,7 +99,7 @@ markdown += `
 ## license
 Copyright © 2020 [Zach Krall](https://zachkrall.com)<br/>This project is [MIT](https://github.com/zachkrall/p5snap/blob/master/LICENSE) licensed.
 
-File Updated on ${(new Date()).toLocaleString()}
+File Updated on ${(new Date()).toUTCString()}
 `
 
   fs.writeFileSync(path.resolve(__dirname, '..', 'README.md'), markdown, {encoding: 'UTF-8'})
