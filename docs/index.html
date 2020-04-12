@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>p5snap / Zach Krall</title>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+    <style type="text/css">
+      .p5{color: #ED225D;}
+      .bg-p5{background-color:#ED225D;}
+      .hover-p5:hover{color:#ED225D}
+      .b--p5{border-color:#ED225D;}
+      .hover-bg-p5:hover{background-color:#ED225D;}
+      .bw--thin{border-width:thin;}
+    </style>
+  </head>
+  <body class="sans-serif bg-near-white">
+    <div class="bg-white pa3 flex justify-between">
+      <div>
+        <a class="link gray hover-p5 mr3" href="https://p5js.org/">p5.js</a>
+        <a class="link gray hover-p5 mr3" href="https://p5js.org/">github</a>
+        <a class="link gray hover-p5 mr3" href="https://npmjs.com/package/p5snap">npm</a>
+      </div>
+      <div>
+        <a class="link gray hover-p5 ml3" href="https://zachkrall.com">zachkrall.com</a>
+      </div>
+    </div>
+    <div class="mw7 ml-auto mr-auto pa3">
+      <h1 class="f1 p5 lh-title mb0">p5snap</h1>
+      <h2 class="f3 mt2 measure-narrow lh-title near-black">a command line tool for creating snapshots of p5 sketches</h2>
+
+      <div class="pb4">
+        <a class="link dib ba bw--thin ph2 pv1 br3 b--p5 p5 hover-white hover-bg-p5 mr2" href="https://github.com/zachkrall/p5snap">GitHub</a>
+        <a class="link dib ba bw--thin ph2 pv1 br3 b--p5 p5 hover-white hover-bg-p5 mr2" href="https://npmjs.com/package/p5snap">NPM</a>
+      </div>
+
+      <div class="pb4">
+        <h3 class="f4">installation</h3>
+        <p>p5snap can be installed using NPM (Node Package Manager)</p>
+        <code class="bg-white pa2 db br2">
+          npm -g install p5snap
+        </code>
+      </div>
+
+      <div class="pb4">
+        <h3>usage</h3>
+        <p>to start p5snap, provide a relative file path and the number of images that should be saved</p>
+        <code class="bg-white pa2 db br2">
+          p5snap &lt;FILE-PATH&gt; -n &lt;NUMBER-OF-IMAGES&gt;
+        </code>
+        <p>for example:</p>
+        <code class="bg-white pa2 db br2">
+          p5snap ./mySketch.js -n 20
+        </code>
+        <p>will create:</p>
+        <ul>
+          <li>mySketch_0.png</li>
+          <li>mySketch_1.png</li>
+          <li>mySketch_2.png</li>
+          <li>...</li>
+          <li>mySketch_19.png</li>
+        </ul>
+        <img src="example.png"/>
+      </div>
+
+      <div class="pb4">
+        <h3>license</h3>
+        <p>Copyright © 2020 <a class="link p5" href="https://zachkrall">Zach Krall</a>.<br/>This project is <a class="link p5" href="https://github.com/zachkrall/p5snap/blob/master/LICENSE">MIT<a/> licensed.</p>
+      </div>
+    </div>
+  </body>
+</html>
