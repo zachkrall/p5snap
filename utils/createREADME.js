@@ -1,4 +1,34 @@
+const fs      = require('fs')
+const path    = require('path')
+const https   = require('https')
+const package = require('../package.json')
 
+let url = 'https://api.github.com/repos/' + package
+  .repository
+  .url
+  .replace('git+https://github.com/','')
+  .replace('.git','/contributors')
+
+let json = ''
+
+https.get(url, {
+  headers: {
+    'user-agent': 'node.js'
+  }
+},(res) => {
+  res.on('data', (d) => {
+    json += d
+  })
+}).on('error', (e) => {
+  console.error(e)
+}).on('close', () => {
+  writeREADME({
+    contributors: JSON.parse(json)
+  })
+});
+
+function writeREADME({ contributors } = {}){
+  let markdown = `
 <img src="./p5snap.png" height="70px"/></div>
 
 <a href="https://github.com/zachkrall/p5snap/issues/"><img src="https://img.shields.io/github/issues/zachkrall/p5snap.svg" height="20px"/></a>
@@ -16,23 +46,23 @@
 
 ## installation
 
-with `npm`:
-```shell
+with \`npm\`:
+\`\`\`shell
 npm -g install p5snap
-```
+\`\`\`
 
 ## usage
 
 to start p5snap, provide a relative file path and the number of images that should be saved
 
-```shell
+\`\`\`shell
 p5snap <FILE-PATH> -n <NUMBER-OF-IMAGES>
-```
+\`\`\`
 
 for example:
-```shell
+\`\`\`shell
 p5snap ./mySketch.js -n 20
-```
+\`\`\`
 
 will create:<br/>
 • mySketch_0.png<br/>
@@ -45,20 +75,30 @@ will create:<br/>
 
 ### instance mode
 
-if your sketch is written as a p5 instance, you can use the `--instance` flag to execute <span style="color:#ED225D">**p5snap**</span> in instance mode
+if your sketch is written as a p5 instance, you can use the \`--instance\` flag to execute <span style="color:#ED225D">**p5snap**</span> in instance mode
 
-instance mode does not require `new p5()`
+instance mode does not require \`new p5()\`
 
 [view example code for instance mode sketches](./examples/instance.js)
 
 ## limitations
 
-**p5snap** currently only saves a single `<canvas/>` context. If your p5 drawing uses or draws DOM elements, it will not be included in the image.
+**p5snap** currently only saves a single \`<canvas/>\` context. If your p5 drawing uses or draws DOM elements, it will not be included in the image.
 
 ## contributing
 Contributions, issues and feature requests are welcome.<br/>Feel free to check [issues](https://github.com/zachkrall/p5snap/issues/) page if you want to contribute.
 
-<img src="https://avatars3.githubusercontent.com/u/2532937?v=4" width="20" height="20"/> <a href="https://github.com/zachkrall">zachkrall</a><br/>
+`
+
+  contributors.forEach( ({login,avatar_url,html_url}) => {
+    markdown += `<img src="${avatar_url}" width="20" height="20"/> <a href="${html_url}">${login}</a><br/>`
+  })
+
+markdown += `
 
 ## license
 Copyright © 2020 [Zach Krall](https://zachkrall.com)<br/>This project is [MIT](https://github.com/zachkrall/p5snap/blob/master/LICENSE) licensed.
+`
+
+  fs.writeFileSync(path.resolve(__dirname, '..', 'README.md'), markdown, {encoding: 'UTF-8'})
+}
