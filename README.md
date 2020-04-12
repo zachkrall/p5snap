@@ -1,6 +1,4 @@
-
 <img src="./p5snap.png" height="70px"/>
-
 
 <br/>
 <a href="https://github.com/zachkrall/p5snap/issues/"><img src="https://img.shields.io/github/issues/zachkrall/p5snap.svg" height="20px"/></a>
