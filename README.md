@@ -61,7 +61,7 @@ Contributions, issues and feature requests are welcome.<br/>Feel free to check [
 
 Check the <a href="https://github.com/zachkrall/p5snap/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22"><img src="https://img.shields.io/github/labels/zachkrall/p5snap/help%20wanted"/></a> tag for suggestions on features to work on.
 
-<img src="https://avatars3.githubusercontent.com/u/2532937?v=4" width="20" height="20"/> <a href="https://github.com/zachkrall">zachkrall</a> (25)<br/> 
+<img src="https://avatars3.githubusercontent.com/u/2532937?v=4" width="20" height="20"/> <a href="https://github.com/zachkrall">zachkrall</a> (29)<br/> 
 
 ## license
 
@@ -69,5 +69,5 @@ Copyright © 2020 [Zach Krall](https://zachkrall.com).<br/>This project is [MIT]
 
 
 
-_Last Updated: Sun, 12 Apr 2020 20:58:09 GMT_
+_Last Updated: Sun, 12 Apr 2020 21:57:02 GMT_
 
