@@ -1,45 +1,23 @@
-const fs       = require('fs')
-const path     = require('path')
-const https    = require('https')
-const package  = require('../package.json')
+/*
 
-const Markdown = require('./Markdown.js')
+  README.js
 
-let url = 'https://api.github.com/repos/' + package
-  .repository
-  .url
-  .replace('git+https://github.com/','')
-  .replace('.git','/contributors')
+  This file constructs markdown text
+  and saves it as README.md
 
-let contributors = ''
+*/
+const Markdown = require('./utils/Markdown.js')
 
-https.get(url, {
-  headers: {
-    'user-agent': 'node.js'
-  }
-},(res) => {
+const README = (contributors_json) => {
 
-  res.on('data', (d) => {
-    contributors += d
-  })
-
-}).on('error', (e) => {
-
-  console.error(e)
-
-}).on('close', () => {
-
-  contributors = JSON.parse(contributors)
-
+  let contributors = JSON.parse(contributors_json)
   let md = new Markdown()
 
   /* ADD HEADER */
   md
-  .text(`<img src="./p5snap.png" height="70px"/>`)
-  .text(`<br/>
-<a href="https://github.com/zachkrall/p5snap/issues/"><img src="https://img.shields.io/github/issues/zachkrall/p5snap.svg" height="20px"/></a>
+  .text(`<img src="./images/p5snap.png" height="70px"/>`)
+  .text(`<a href="https://github.com/zachkrall/p5snap/issues/"><img src="https://img.shields.io/github/issues/zachkrall/p5snap.svg" height="20px"/></a>
 <a href="https://github.com/zachkrall/p5snap/pulls"><img src="https://img.shields.io/github/issues-pr/zachkrall/p5snap"/></a>
-<a href="https://github.com/zachkrall/p5snap/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22"><img src="https://img.shields.io/github/labels/zachkrall/p5snap/help%20wanted"/></a>
 <a href="https://github.com/zachkrall/p5snap/commits"><img src="https://img.shields.io/github/last-commit/zachkrall/p5snap.svg" height="20px"/></a>
 <br/>
 <a href="https://npmjs.com/package/p5snap/"><img src="https://img.shields.io/npm/dy/p5snap"/></a>
@@ -64,12 +42,12 @@ https.get(url, {
   .text(`for example:`)
   .code(`p5snap ./mySketch.js -n 20`, `shell`)
   .text(`will create:<br/>
-• mySketch_0.png<br/>
-• mySketch_1.png<br/>
-• mySketch_2.png<br/>
-• ...<br/>
-• mySketch_19.png`)
-  .image(`Example`,`example.png`)
+  • mySketch_0.png<br/>
+  • mySketch_1.png<br/>
+  • mySketch_2.png<br/>
+  • ...<br/>
+  • mySketch_19.png`)
+  .image(`Example`,`./images/example.png`)
 
   /* INSTANCE MODE */
   md
@@ -87,28 +65,36 @@ https.get(url, {
   md
   .h2(`contributing`)
   .text(`Contributions, issues and feature requests are welcome.<br/>Feel free to check [issues](https://github.com/zachkrall/p5snap/issues/) page if you want to contribute.`)
+  .text(`Check the <a href="https://github.com/zachkrall/p5snap/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22"><img src="https://img.shields.io/github/labels/zachkrall/p5snap/help%20wanted"/></a> tag for suggestions on features to work on.`)
 
-  contributors.forEach( ({login,avatar_url,html_url}) => {
-     md
-     .text(`<img src="${avatar_url}" width="20" height="20"/> <a href="${html_url}">${login}</a><br/>`)
-  })
+  /* add all contributors to readme */
+  let contributors_string = contributors
+    .map(({
+      login,
+      avatar_url,
+      html_url,
+      contributions
+    }) => {
+      let entry = `<img src="${avatar_url}" width="20" height="20"/> `
+        entry += `<a href="${html_url}">${login}</a> `
+        entry += `(${contributions})<br/> `
+      return entry
+    })
+    .join('')
+
+  md.text(contributors_string)
 
   /* LICENSE */
   md
   .h2(`license`)
-  .text(`Copyright © 2020 [Zach Krall](https://zachkrall.com)<br/>This project is [MIT](https://github.com/zachkrall/p5snap/blob/master/LICENSE) licensed.`)
+  .text(`Copyright © 2020 [Zach Krall](https://zachkrall.com).<br/>This project is [MIT](https://github.com/zachkrall/p5snap/blob/master/LICENSE) licensed.`)
 
   /* FOOTER */
   md
   .text(``)
-  .text(`<br/>_Last Updated:<br/>${(new Date()).toUTCString()}_`)
+  .text(`_Last Updated: ${(new Date()).toUTCString()}_`)
 
+  return md.value
+}
 
-  /* WRITE FILE */
-  fs.writeFileSync(
-    path.resolve(__dirname, '..', 'README.md'),
-    md.value,
-    {encoding: 'UTF-8'}
-  )
-
-});
+module.exports = README
