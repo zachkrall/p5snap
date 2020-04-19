@@ -10,6 +10,7 @@ const save      = require('../src/save')
 function snap({
   sketch_path,
   output_path='.',
+  raw_sketch,
   width=1920,
   height=1080,
   instance=false,
@@ -27,7 +28,7 @@ function snap({
 
   const p5 = require('p5')
 
-  const sketch_contents = fs.readFileSync(sketch_path, {encoding: 'UTF-8'})
+  const sketch_contents = raw_sketch || fs.readFileSync(sketch_path, {encoding: 'UTF-8'})
   const mode = !instance ? 'global' : 'instance'
 
   if(mode == 'global'){
