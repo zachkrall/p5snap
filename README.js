@@ -48,7 +48,7 @@ const README = (contributors_json) => {
   • ...<br/>
   • mySketch_19.png`)
   .image(`Example`,`./images/example.png`)
-
+  // module mode
   .h3(`as a module`)
   .text(`you can bring p5snap into your existing node.js build tools by importing the snap module.`)
   .text(`for example:`)
