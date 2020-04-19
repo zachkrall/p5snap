@@ -5,7 +5,7 @@ const jsdom     = require('jsdom')
 const { JSDOM } = jsdom;
 const dom       = new JSDOM(`...`, { runScripts: "outside-only" })
 
-const save      = require('./save')
+const save      = require('../src/save')
 
 function snap({
   sketch_path,
