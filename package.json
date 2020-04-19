@@ -4,7 +4,8 @@
   "description": "A command line tool for creating snapshots of p5 sketches",
   "bin": "./src/main.js",
   "scripts": {
-    "dev:demo": "node ./src/main.js ./examples/global.js -n 20",
+    "test:demo": "node ./src/main.js ./examples/global.js -n 20",
+    "test:module": "node ./examples/testmodule.js",
     "dev:readme": "node ./utils/buildREADME.js"
   },
   "repository": "github:zachkrall/p5snap",

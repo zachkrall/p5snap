@@ -20,5 +20,5 @@ module.exports = ({ canvas, filename, dir } = {}) => {
 
   fs.writeFileSync(file_path, buffer);
 
-  gridMsg(`${chalk.bold('Saved')}`,`${file_name}`);
+  gridMsg(`${chalk.bold('Saved')}`,`${file_path}`);
 }

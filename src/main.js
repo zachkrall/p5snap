@@ -32,19 +32,24 @@ const yargs = require('yargs')
 ${package.description}
 
 Usage: $0 <command> [options]`)
-  // .command('capture', 'Create a capture')
   .example('$0 sketch.js', '')
   .example('$0 --instance -f sketch.js', '(Sketch uses instance mode)')
-  // .alias('f', 'file')
-  // .nargs('f', 1)
-  // .describe('f', 'Set file path')
-  // .demandOption(['f'])
-  .alias('n', 'num')
+  // number of images to save
   .describe('n', 'Number of images to save')
+  .alias('n', 'num')
   .default('n', 1)
+  // instance mode
   .describe('instance', 'Sketch file uses p5 in \'instance\' mode')
   .alias('i', 'instance')
   .help('h')
+  // window dimensions
+  .describe('w', 'Window Width Value')
+  .alias('w', 'width')
+  .default('w', 1920)
+  .describe('h', 'Window Height Value')
+  .alias('h', 'height')
+  .default('h', 1080)
+  // help info
   .alias('h', 'help')
   .epilog('☺️ ✨')
 
@@ -59,6 +64,8 @@ global.screen            = window.screen
 global.navigator         = window.navigator
 global.HTMLCanvasElement = window.HTMLCanvasElement
 
+window.innerWidth = argv.w
+window.innerHeight = argv.h
 /*
   Require p5 after virtual dom is set up
 */

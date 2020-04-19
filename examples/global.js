@@ -3,7 +3,7 @@ var bgColor = 0;
 var i = 0;
 
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(window.innerWidth, window.innerHeight);
 }
 
 function x1(t){

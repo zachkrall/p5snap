@@ -49,6 +49,21 @@ const README = (contributors_json) => {
   • mySketch_19.png`)
   .image(`Example`,`./images/example.png`)
 
+  .h3(`as a module`)
+  .text(`you can bring p5snap into your existing node.js build tools by importing the snap module.`)
+  .text(`for example:`)
+  .code(`const path = require('path')
+const snap = require('p5snap/modules/snap.js')
+
+snap({
+  sketch_path: path.resolve(__dirname, './mySketch.js'),
+  output_path: path.resolve(__dirname),
+  width: 1920,
+  height: 1080,
+  instance: false,
+  filename: 'mySketch',
+})`)
+
   /* INSTANCE MODE */
   md
   .h3(`instance mode`)
