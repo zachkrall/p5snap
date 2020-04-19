@@ -43,6 +43,26 @@ will create:<br/>
 
 ![Example](./images/example.png)
 
+### as a module
+
+you can bring p5snap into your existing node.js build tools by importing the snap module.
+
+for example:
+
+```
+const path = require('path')
+const snap = require('p5snap/modules/snap.js')
+
+snap({
+  sketch_path: path.resolve(__dirname, './mySketch.js'),
+  output_path: path.resolve(__dirname),
+  width: 1920,
+  height: 1080,
+  instance: false,
+  filename: 'mySketch',
+})
+```
+
 ### instance mode
 
 if your sketch is written as a p5 instance, you can use the `--instance` flag to execute **p5snap** in instance mode
@@ -61,7 +81,7 @@ Contributions, issues and feature requests are welcome.<br/>Feel free to check [
 
 Check the <a href="https://github.com/zachkrall/p5snap/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22"><img src="https://img.shields.io/github/labels/zachkrall/p5snap/help%20wanted"/></a> tag for suggestions on features to work on.
 
-<img src="https://avatars3.githubusercontent.com/u/2532937?v=4" width="20" height="20"/> <a href="https://github.com/zachkrall">zachkrall</a> (32)<br/> 
+<img src="https://avatars3.githubusercontent.com/u/2532937?v=4" width="20" height="20"/> <a href="https://github.com/zachkrall">zachkrall</a> (34)<br/> 
 
 ## license
 
@@ -69,5 +89,5 @@ Copyright © 2020 [Zach Krall](https://zachkrall.com).<br/>This project is [MIT]
 
 
 
-_Last Updated: Tue, 14 Apr 2020 17:43:15 GMT_
+_Last Updated: Sun, 19 Apr 2020 20:41:54 GMT_
 
