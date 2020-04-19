@@ -30,6 +30,7 @@
   },
   "files": [
     "src/**/*",
+    "modules/**/*",
     "README.md",
     "LICENSE"
   ]
