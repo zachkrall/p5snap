@@ -89,5 +89,5 @@ Copyright © 2020 [Zach Krall](https://zachkrall.com).<br/>This project is [MIT]
 
 
 
-_Last Updated: Sun, 19 Apr 2020 20:41:54 GMT_
+_Last Updated: Sun, 19 Apr 2020 20:42:24 GMT_
 
