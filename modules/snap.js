@@ -84,6 +84,8 @@ function snap({
         dir: output_path
       })
 
+      window.close()
+      
     }, 500)
   }
 
