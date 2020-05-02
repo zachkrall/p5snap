@@ -1,0 +1,6 @@
+docs/
+examples/
+images/
+src/
+.gitignore
+*.config.js

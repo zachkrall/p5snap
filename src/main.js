@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-
 /*
 
   ██████╗ ███████╗███████╗███╗   ██╗ █████╗ ██████╗
@@ -13,179 +11,62 @@
   from a p5.js sketch
 
 */
-const package   = require('../package.json')
+const fs = require('fs')
+const path = require('path')
 
-const fs        = require('fs')
-const path      = require('path')
+/* cli */
+const cli = require('./cli')
+const args = cli.argv
 
-const chalk     = require('chalk')
-const jsdom     = require('jsdom')
+/* console logging with style */
+const { errorMsg, gridMsg } = require('./utils/console')
 
-const { JSDOM } = jsdom;
-const dom       = new JSDOM(`...`, { runScripts: "outside-only" })
+/* input path */
+const input_path = args._[0]
 
-/*
-  CLI
-*/
-const yargs = require('yargs')
-  .usage(`📷 ${chalk.bold(chalk.blue(package.name))}
-${package.description}
-
-Usage: $0 <command> [options]`)
-  .example('$0 sketch.js', '')
-  .example('$0 --instance -f sketch.js', '(Sketch uses instance mode)')
-  // number of images to save
-  .describe('n', 'Number of images to save')
-  .alias('n', 'num')
-  .default('n', 1)
-  // instance mode
-  .describe('instance', 'Sketch file uses p5 in \'instance\' mode')
-  .alias('i', 'instance')
-  .help('h')
-  // window dimensions
-  .describe('w', 'Window Width Value')
-  .alias('w', 'width')
-  .default('w', 1920)
-  .describe('h', 'Window Height Value')
-  .alias('h', 'height')
-  .default('h', 1080)
-  // help info
-  .alias('h', 'help')
-  .epilog('☺️ ✨')
-
-const argv = yargs.argv
-
-/*
-  Create the virtual window environment
-*/
-global.window            = dom.window
-global.document          = window.document
-global.screen            = window.screen
-global.navigator         = window.navigator
-global.HTMLCanvasElement = window.HTMLCanvasElement
-
-window.innerWidth = argv.w
-window.innerHeight = argv.h
-/*
-  Require p5 after virtual dom is set up
-*/
-const p5 = require('p5')
-
-/*
-  Save Canvas Function
-*/
-const save = require('./save')
-
-/* Define Error Printing */
-const errorMsg = str => console.log(`${chalk.red(chalk.bold(str))}`)
-const gridMsg  = require('./gridMsg.js')
-
-/*
-  Input Path Validation
-*/
-const input_path      = argv._[0]
-
-if(!input_path) {
-  yargs.showHelp()
-  console.log(``)
-  errorMsg('No File Provided')
+/* validate input */
+if (!input_path) {
+  cli.showHelp()
+  errorMsg(`\nNo File Provided`)
   process.exit(0)
 }
 
-const current_dir     = process.cwd()
-const sketch_file     = path.resolve(current_dir, input_path)
+/* set output file name */
+const filename = input_path.match(/[A-z]*.js$/g)[0].replace(/.js/, '')
 
-/*
-  File Validation
-*/
-if(!fs.existsSync(sketch_file)){
-  yargs.showHelp()
-  console.log(``)
-  errorMsg(`File Does Not Exist:
-${sketch_file}`)
+/* locate sketch file */
+const current_dir = process.cwd()
+const output_dir = args.o ? path.resolve(args.o) : current_dir
+const sketch_file = path.resolve(current_dir, input_path)
+
+if (args.v) console.log(`\n[ VERBOSE MODE ]\n`)
+
+if (args.v) gridMsg(`Input File`, `${sketch_file}`)
+if (args.v) gridMsg(`Output Dir`, `${output_dir}`)
+if (args.v) gridMsg(`Filename`, `${filename}.png`)
+
+/* file validation */
+if (!fs.existsSync(sketch_file)) {
+  errorMsg(`\n❌ Input file does not exist:\n${sketch_file}`)
   process.exit(0)
-}
-
-const sketch_contents = fs.readFileSync(sketch_file, {encoding: 'UTF-8'})
-const filename        = input_path.match(/[A-z]*.js$/g)[0].replace(/.js/,'')
-
-/*
-  p5 Mode Selection
-  Default: Global
-*/
-const mode = !argv.i ? 'global' : 'instance'
-
-/*
-  Interval Counter
-*/
-let int = 0
-
-console.log(`📷 ${chalk.blue(chalk.bold(package.name))}`)
-console.log(``)
-gridMsg(`Filename`, `${chalk.underline(filename)}`)
-
-if(mode == 'global'){
-  /*
-    GLOBAL MODE
-  */
-  gridMsg('p5 Mode','Default (Global)')
-  console.log('')
-
-  // ... set timeout used for waiting for virtual dom to "load"
-  // TODO: use window.onload event?
-  setTimeout( ()=>{
-    window.eval(`${sketch_contents}`)
-    new p5()
-    window.eval(`noLoop()`)
-
-    setInterval( ()=>{
-      window.eval(`_draw()`)
-
-      // there should only be a single canvas in our dom
-      let canvas = document.querySelector('canvas')
-
-      let save_filename = argv.n > 1 ? filename + '_' + int : filename
-
-      save({
-        canvas: canvas,
-        filename: save_filename,
-        dir: current_dir
-      })
-
-      int++
-
-      if(int >= argv.n) process.exit(0)
-    }, 100)
-  }, 500)
 } else {
-  /*
-    INSTANCE MODE
-  */
-  let sketch
-  gridMsg('p5 Mode','Instance')
-  console.log('')
-
-  // there must be a better way to 'wait'
-  // for the fake dom to update after loading p5...
-  setTimeout( ()=>{
-    eval(`sketch = new p5(${sketch_contents})`)
-    eval(`sketch.noLoop()`)
-    eval(`sketch._draw()`)
-
-    setInterval( ()=>{
-      eval(`sketch._draw()`)
-      let canvas = sketch._curElement.canvas
-      let save_filename = argv.n > 1 ? filename + '_' + int : filename
-
-      save({
-        canvas: canvas,
-        filename: save_filename,
-        dir: current_dir
-      })
-
-      int++
-
-      if(int >= argv.n) process.exit(0)
-    }, 100)
-  }, 500)
+  if (args.v) console.log(`\nFile Exists!`)
 }
+
+/* snap module */
+const snap = require('./snap')
+
+let num_images = args.n
+
+if (args.v) console.log(`\nSaving ${num_images} images\n`)
+
+snap({
+  sketch_path: sketch_file,
+  output_path: output_dir,
+  width: args.width,
+  height: args.height,
+  instance: args.i,
+  filename: filename,
+  delay: args.d,
+  num_images: num_images
+})
