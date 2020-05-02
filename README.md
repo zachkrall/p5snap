@@ -92,5 +92,3 @@ Check the <a href="https://github.com/zachkrall/p5snap/issues?q=is%3Aissue+is%3A
 ## license
 
 Copyright © 2020 [Zach Krall](https://zachkrall.com).<br/>This project is [MIT](https://github.com/zachkrall/p5snap/blob/master/LICENSE) licensed.
-
-_Last Updated: Sat, 02 May 2020 17:22:19 GMT_
