@@ -35,8 +35,6 @@ will create:<br/>
 • ...<br/>
 • mySketch_19.png
 
-![Example](./images/example.png)
-
 ### as a module
 
 you can bring p5snap into your existing node.js build tools by importing the snap module.
