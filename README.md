@@ -55,7 +55,8 @@ snap({
   width: 1920,
   height: 1080,
   instance: false,
-  filename: 'mySketch' // milliseconds to delay capturing
+  filename: 'mySketch',
+  delay: 300 // milliseconds to delay capturing
 })
 ```
 

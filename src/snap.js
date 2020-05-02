@@ -7,7 +7,7 @@ const { Script } = require('vm')
 
 /* load p5 as string */
 const p5 = require('fs').readFileSync(
-  path.resolve('./node_modules/p5/lib/p5.min.js'),
+  path.resolve(__dirname, '../node_modules/p5/lib/p5.min.js'),
   {
     encoding: 'utf-8'
   }
