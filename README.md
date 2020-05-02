@@ -1,4 +1,4 @@
-<img src="./images/cover.png"/><br/><br/>
+<img src="./images/p5snap.png"/><br/><br/>
 <img src="https://img.shields.io/npm/v/p5snap?color=DA3B5F&label=Version"/> <a href="https://github.com/zachkrall/p5snap/issues/"><img src="https://img.shields.io/github/issues/zachkrall/p5snap.svg" height="20px"/></a> <a href="https://npmjs.com/package/p5snap/"><img src="https://img.shields.io/npm/dy/p5snap"/></a>
 <a href="https://github.com/zachkrall/p5snap/graphs/contributors"><img src="https://img.shields.io/github/contributors/zachkrall/p5snap"></a> <a href="http://newschool.edu"><img src="https://img.shields.io/badge/made%20at-The%20New%20School-E82E21.svg" height="20px"/></a>
 
@@ -34,6 +34,8 @@ will create:<br/>
 • mySketch_2.png<br/>
 • ...<br/>
 • mySketch_19.png
+
+![](./images/example.png)
 
 ### as a module
 
