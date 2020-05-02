@@ -43,7 +43,9 @@ function snap({
         return !(
           line.includes(`require('p5')`) ||
           line.includes(`require("p5")`) ||
-          line.includes(`module.exports`)
+          line.includes(`module.exports`) ||
+          line.includes(`import p5`) ||
+          line.includes(`export`)
         )
       })
       .join('\n')
