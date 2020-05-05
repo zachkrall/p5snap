@@ -26,9 +26,9 @@ const input_path = args._[0]
 
 /* validate input */
 if (!input_path) {
-  cli.showHelp()
-  errorMsg(`\nNo File Provided`)
-  process.exit(0)
+	cli.showHelp()
+	errorMsg(`\nNo File Provided`)
+	process.exit(0)
 }
 
 /* set output file name */
@@ -47,10 +47,10 @@ if (args.v) gridMsg(`Filename`, `${filename}.png`)
 
 /* file validation */
 if (!fs.existsSync(sketch_file)) {
-  errorMsg(`\n❌ Input file does not exist:\n${sketch_file}`)
-  process.exit(0)
+	errorMsg(`\n❌ Input file does not exist:\n${sketch_file}`)
+	process.exit(0)
 } else {
-  if (args.v) console.log(`\nFile Exists!`)
+	if (args.v) console.log(`\nFile Exists!`)
 }
 
 /* snap module */
@@ -61,12 +61,12 @@ let num_images = args.n
 if (args.v) console.log(`\nSaving ${num_images} images\n`)
 
 snap({
-  sketch_path: sketch_file,
-  output_path: output_dir,
-  width: args.width,
-  height: args.height,
-  instance: args.i,
-  filename: filename,
-  delay: args.d,
-  num_images: num_images
+	sketch_path: sketch_file,
+	output_path: output_dir,
+	width: args.width,
+	height: args.height,
+	instance: args.i,
+	filename: filename,
+	delay: args.d,
+	num_images: num_images
 })

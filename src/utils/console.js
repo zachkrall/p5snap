@@ -4,9 +4,9 @@ const chalk = require('chalk')
 const errorMsg = s => console.log(chalk.red.bold(s))
 
 const gridMsg = (title, value) =>
-  console.log(`${(title + ':').padEnd(12, ' ')} ${value}`)
+	console.log(`${(title + ':').padEnd(12, ' ')} ${value}`)
 
 module.exports = {
-  errorMsg,
-  gridMsg
+	errorMsg,
+	gridMsg
 }

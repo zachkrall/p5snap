@@ -1,38 +1,39 @@
 {
-  "name": "p5snap",
-  "version": "0.1.2",
-  "description": "A command line tool for creating snapshots of p5 sketches",
-  "bin": "./lib/bin.js",
-  "scripts": {
-    "build": "rollup -c ./rollup.config.js",
-    "test": "npm run build && node ./lib/bin.js --verbose",
-    "test:global": "npm run build && node ./lib/bin.js ./examples/global.js -n 10 --verbose",
-    "test:instance": "npm run build && node ./lib/bin.js ./examples/instance.js -n 10 --instance --verbose",
-    "test:frames": "npm run build && node ./lib/bin.js ./examples/frameCount.js -n 10 --verbose"
-  },
-  "repository": "github:zachkrall/p5snap",
-  "keywords": [
-    "cli",
-    "art",
-    "generative",
-    "p5.js"
-  ],
-  "author": "Zach Krall",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zachkrall/p5snap/issues"
-  },
-  "homepage": "https://github.com/zachkrall/p5snap",
-  "dependencies": {
-    "canvas": "^2.6.1",
-    "chalk": "^4.0.0",
-    "jsdom": "^16.2.2",
-    "p5": "^1.0.0",
-    "yargs": "^15.3.1"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^11.1.0",
-    "@rollup/plugin-json": "^4.0.3",
-    "rollup": "^2.7.6"
-  }
+	"name": "p5snap",
+	"version": "0.1.2",
+	"description": "A command line tool for creating snapshots of p5 sketches",
+	"bin": "./lib/bin.js",
+	"scripts": {
+		"build": "rollup -c ./rollup.config.js",
+		"test": "npm run build && node ./lib/bin.js --verbose",
+		"test:global": "npm run build && node ./lib/bin.js ./examples/global.js -n 10 --verbose",
+		"test:instance": "npm run build && node ./lib/bin.js ./examples/instance.js -n 10 --instance --verbose",
+		"test:frames": "npm run build && node ./lib/bin.js ./examples/frameCount.js -n 10 --verbose"
+	},
+	"repository": "github:zachkrall/p5snap",
+	"keywords": [
+		"cli",
+		"art",
+		"generative",
+		"p5.js"
+	],
+	"author": "Zach Krall",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/zachkrall/p5snap/issues"
+	},
+	"homepage": "https://github.com/zachkrall/p5snap",
+	"dependencies": {
+		"canvas": "^2.6.1",
+		"chalk": "^4.0.0",
+		"jsdom": "^16.2.2",
+		"p5": "^1.0.0",
+		"rollup-plugin-cleanup": "^3.1.1",
+		"yargs": "^15.3.1"
+	},
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^11.1.0",
+		"@rollup/plugin-json": "^4.0.3",
+		"rollup": "^2.7.6"
+	}
 }

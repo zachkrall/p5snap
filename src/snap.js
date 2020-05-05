@@ -7,10 +7,10 @@ const { Script } = require('vm')
 
 /* load p5 as string */
 const p5 = require('fs').readFileSync(
-  path.resolve(__dirname, '../node_modules/p5/lib/p5.min.js'),
-  {
-    encoding: 'utf-8'
-  }
+	path.resolve(__dirname, '../node_modules/p5/lib/p5.min.js'),
+	{
+		encoding: 'utf-8'
+	}
 )
 
 /* file save utility */
@@ -18,42 +18,42 @@ const save = require('./utils/save')
 
 /* define snap function */
 function snap({
-  sketch_path,
-  output_path = '.',
-  raw_sketch,
-  width = 1920,
-  height = 1080,
-  instance = false,
-  filename = 'preview',
-  delay = 0,
-  num_images = 1
+	sketch_path,
+	output_path = '.',
+	raw_sketch,
+	width = 1920,
+	height = 1080,
+	instance = false,
+	filename = 'preview',
+	delay = 0,
+	num_images = 1
 } = {}) {
-  let interval = num_images
+	let interval = num_images
 
-  let sketch_contents =
-    raw_sketch || fs.readFileSync(sketch_path, { encoding: 'UTF-8' })
+	let sketch_contents =
+		raw_sketch || fs.readFileSync(sketch_path, { encoding: 'UTF-8' })
 
-  if (instance) {
-    /*
+	if (instance) {
+		/*
       filter out any require or export statements
     */
-    sketch_contents = sketch_contents
-      .split('\n')
-      .filter(line => {
-        return !(
-          line.includes(`require('p5')`) ||
-          line.includes(`require("p5")`) ||
-          line.includes(`module.exports`) ||
-          line.includes(`import p5`) ||
-          line.includes(`export`)
-        )
-      })
-      .join('\n')
-  }
+		sketch_contents = sketch_contents
+			.split('\n')
+			.filter(line => {
+				return !(
+					line.includes(`require('p5')`) ||
+					line.includes(`require("p5")`) ||
+					line.includes(`module.exports`) ||
+					line.includes(`import p5`) ||
+					line.includes(`export`)
+				)
+			})
+			.join('\n')
+	}
 
-  const vmContext = dom.getInternalVMContext()
+	const vmContext = dom.getInternalVMContext()
 
-  const sketch_script = new Script(`
+	const sketch_script = new Script(`
 ${p5}
 
 try {
@@ -66,41 +66,41 @@ try {
   }
 }`)
 
-  const initDOM = new Promise((resolve, reject) => {
-    dom.window.addEventListener('DOMContentLoaded', () => {
-      sketch_script.runInContext(vmContext)
-      resolve()
-    })
-  })
+	const initDOM = new Promise((resolve, reject) => {
+		dom.window.addEventListener('DOMContentLoaded', () => {
+			sketch_script.runInContext(vmContext)
+			resolve()
+		})
+	})
 
-  const loop = async () => {
-    setInterval(() => {
-      if (!dom.window.document.querySelector('canvas')) {
-        console.log('\nERROR: No canvas element found')
-        process.exit(0)
-      }
+	const loop = async () => {
+		setInterval(() => {
+			if (!dom.window.document.querySelector('canvas')) {
+				console.log('\nERROR: No canvas element found')
+				process.exit(0)
+			}
 
-      save({
-        canvas: dom.window.document.querySelector('canvas'),
-        filename: filename + '_' + (num_images - interval),
-        dir: output_path
-      })
+			save({
+				canvas: dom.window.document.querySelector('canvas'),
+				filename: filename + '_' + (num_images - interval),
+				dir: output_path
+			})
 
-      // next step
-      interval -= 1
+			// next step
+			interval -= 1
 
-      // end when ready
-      if (interval < 1) process.exit(0)
-    }, delay + 500)
-  }
+			// end when ready
+			if (interval < 1) process.exit(0)
+		}, delay + 500)
+	}
 
-  initDOM
-    .then(() => {
-      setTimeout(loop, 1000)
-    })
-    .catch(err => {
-      console.error(err)
-    })
+	initDOM
+		.then(() => {
+			setTimeout(loop, 1000)
+		})
+		.catch(err => {
+			console.error(err)
+		})
 }
 
 module.exports = snap
