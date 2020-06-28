@@ -4,6 +4,8 @@
 
 ## about
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/698d945b122045ddb4ef39db8f8a3f67)](https://app.codacy.com/manual/zachkrall/p5snap?utm_source=github.com&utm_medium=referral&utm_content=zachkrall/p5snap&utm_campaign=Badge_Grade_Dashboard)
+
 **p5snap** is a command-line interface that creates and saves snapshots of a p5 sketch
 
 ## installation
